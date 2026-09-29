@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+Sitemap: https://cristalprint.ru/sitemap.xml
