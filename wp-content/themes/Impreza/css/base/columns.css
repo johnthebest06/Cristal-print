@@ -1,0 +1,111 @@
+/* 
+ * VC Columns
+ */
+
+.g-cols {
+	display: flex;
+	flex-wrap: wrap;
+	}
+	.g-cols > div {
+		display: flex;
+		flex-direction: column;
+		}
+		.g-cols > div > .vc_column-inner {
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			flex-shrink: 0; /* fix for vertical alignment in IE11 */
+			}
+
+/* Type: Default */
+.g-cols.type_default {
+	margin: 0 -1.5rem;
+	}
+	.g-cols.type_default > div > .vc_column-inner {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+		}
+	.g-cols.type_default > div.has-fill > .vc_column-inner {
+		padding-top: 1.5rem;
+		padding-bottom: 1.5rem;
+		}
+
+/* Type: Boxes */
+.g-cols.type_boxes {
+	margin: 0; /* fix when VC applies own styles */
+	}
+	.g-cols.type_boxes > div > .vc_column-inner {
+		background-position: center center !important;
+		background-size: cover !important;
+		padding: 4rem;
+		}
+
+/* Valign */
+.g-cols.valign_middle > div > .vc_column-inner {
+	justify-content: center;
+	}
+.g-cols.valign_bottom > div > .vc_column-inner {
+	justify-content: flex-end;
+	}
+
+/* Gaps */
+.g-cols.type_default.vc_column-gap-1 { margin: 0 -25.5px; margin: 0 calc(-1.5rem - 0.5px); }
+.g-cols.type_default.vc_column-gap-2 { margin: 0 -26px; margin: 0 calc(-1.5rem - 1px); }
+.g-cols.type_default.vc_column-gap-3 { margin: 0 -26.5px; margin: 0 calc(-1.5rem - 1.5px); }
+.g-cols.type_default.vc_column-gap-4 { margin: 0 -27px; margin: 0 calc(-1.5rem - 2px); }
+.g-cols.type_default.vc_column-gap-5 { margin: 0 -27.5px; margin: 0 calc(-1.5rem - 2.5px); }
+.g-cols.type_default.vc_column-gap-10 { margin: 0 -30px; margin: 0 calc(-1.5rem - 5px); }
+.g-cols.type_default.vc_column-gap-15 { margin: 0 -32.5px; margin: 0 calc(-1.5rem - 7.5px); }
+.g-cols.type_default.vc_column-gap-20 { margin: 0 -35px; margin: 0 calc(-1.5rem - 10px); }
+.g-cols.type_default.vc_column-gap-25 { margin: 0 -37.5px; margin: 0 calc(-1.5rem - 12.5px); }
+.g-cols.type_default.vc_column-gap-30 { margin: 0 -40px; margin: 0 calc(-1.5rem - 15px); }
+.g-cols.type_default.vc_column-gap-35 { margin: 0 -42.5px; margin: 0 calc(-1.5rem - 17.5px); }
+.g-cols.type_boxes.vc_column-gap-1 { margin: 0 -0.5px; }
+.g-cols.type_boxes.vc_column-gap-2 { margin: 0 -1px; }
+.g-cols.type_boxes.vc_column-gap-3 { margin: 0 -1.5px; }
+.g-cols.type_boxes.vc_column-gap-4 { margin: 0 -2px; }
+.g-cols.type_boxes.vc_column-gap-5 { margin: 0 -2.5px; }
+.g-cols.type_boxes.vc_column-gap-10 { margin: 0 -5px; }
+.g-cols.type_boxes.vc_column-gap-15 { margin: 0 -7.5px; }
+.g-cols.type_boxes.vc_column-gap-20 { margin: 0 -10px; }
+.g-cols.type_boxes.vc_column-gap-25 { margin: 0 -12.5px; }
+.g-cols.type_boxes.vc_column-gap-30 { margin: 0 -15px; }
+.g-cols.type_boxes.vc_column-gap-35 { margin: 0 -17.5px; }
+.vc_column-gap-1 > .vc_column_container { padding: 0.5px; }
+.vc_column-gap-2 > .vc_column_container { padding: 1px; }
+.vc_column-gap-3 > .vc_column_container { padding: 1.5px; }
+.vc_column-gap-4 > .vc_column_container { padding: 2px; }
+.vc_column-gap-5 > .vc_column_container { padding: 2.5px; }
+.vc_column-gap-10 > .vc_column_container { padding: 5px; }
+.vc_column-gap-15 > .vc_column_container { padding: 7.5px; }
+.vc_column-gap-20 > .vc_column_container { padding: 10px; }
+.vc_column-gap-25 > .vc_column_container { padding: 12.5px; }
+.vc_column-gap-30 > .vc_column_container { padding: 15px; }
+.vc_column-gap-35 > .vc_column_container { padding: 17.5px; }
+
+/* Helper class - reset margins */
+.g-cols.reset-margins,
+.l-section.reset-margins > .l-section-h > .g-cols {
+	margin: 0; 
+	}
+
+/* Column Link */
+.vc_column_container.has-link {
+	position: relative;
+	}
+.vc_column-link {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	}
+
+/* Fix for IE11 when image in flexbox is not resized correctly */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+.vc_column-inner,
+.wpb_wrapper {
+	min-height: 1px;
+	}
+}

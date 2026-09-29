@@ -1,0 +1,256 @@
+/*
+ * Pagination
+ */
+
+/* Sided navigation (used in Portfolio Pages, Posts)
+   ========================================================================== */
+.l-navigation-item {
+	display: block;
+	position: fixed;
+	z-index: 98;
+	top: 50%;
+	width: 16rem;
+	margin-top: -4rem;
+	/* TODO: rework transition to transforms */
+	transition: right 0.3s cubic-bezier(.78,.13,.15,.86), left 0.3s cubic-bezier(.78,.13,.15,.86), opacity 0.3s;
+	}
+.l-navigation.inv_true .to_prev,
+.l-navigation.inv_false .to_next {
+	right: -13.5rem;
+	text-align: right;
+	}
+.l-navigation.inv_true .to_next,
+.l-navigation.inv_false .to_prev {
+	left: -13.5rem;
+	text-align: left;
+	}
+.no-touch .l-navigation.inv_true .to_prev:hover,
+.no-touch .l-navigation.inv_false .to_next:hover {
+	right: 0;
+	}
+.no-touch .l-navigation.inv_true .to_next:hover,
+.no-touch .l-navigation.inv_false .to_prev:hover {
+	left: 0;
+	}
+	.l-navigation-item img {
+		width: 8rem;
+		}
+	.l-navigation.inv_true .to_next img,
+	.l-navigation.inv_false .to_prev img {
+		float: left;
+		}
+	.l-navigation.inv_true .to_prev img,
+	.l-navigation.inv_false .to_next img {
+		float: right;
+		}
+	.l-navigation-item-arrow {
+		float: right;
+		text-align: center;
+		width: 8rem;
+		background-color: rgba(0,0,0,0.3);
+		color: #fff;
+		transition: background-color 0.3s cubic-bezier(.78,.13,.15,.86);
+		}
+		.l-navigation-item-arrow:before {
+			display: inline-block;
+			vertical-align: top;
+			font-family: fontawesome;
+			font-size: 1.8rem;
+			line-height: 8rem;
+			width: 2.5rem;
+			transition: transform 0.3s cubic-bezier(.78,.13,.15,.86);
+			}
+		.l-navigation.inv_true .to_next .l-navigation-item-arrow:before,
+		.l-navigation.inv_false .to_prev .l-navigation-item-arrow:before {
+			content: '\f104';
+			transform: translate(2.6rem,0);
+			}
+		.l-navigation.inv_true .to_prev .l-navigation-item-arrow:before,
+		.l-navigation.inv_false .to_next .l-navigation-item-arrow:before {
+			content: '\f105';
+			transform: translate(-2.6rem,0);
+			}
+		.no-touch .l-navigation-item:hover .l-navigation-item-arrow:before {
+			transform: none !important;
+			}
+	.l-navigation-item-title {
+		font-size: 0.9rem;
+		line-height: 1.4rem;
+		clear: both;
+		overflow: hidden;
+		}
+		.l-navigation-item-title span {
+			display: block;
+			padding: 0.7rem 1rem;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			background-color: rgba(30,30,30,0.9);
+			color: #fff;
+			opacity: 0;
+			transform: translate(0,-100%);
+			transition: transform 0.3s cubic-bezier(.78,.13,.15,.86), opacity 0.3s cubic-bezier(.78,.13,.15,.86);
+			}
+		.no-touch .l-navigation-item:hover .l-navigation-item-title span {
+			opacity: 1;
+			transform: translate(0,0);
+			transition-delay: 0.2s;
+			}
+			
+/* Hide navigation when popup is opened */
+.cloverlay_fixed .l-navigation-item,
+.mfp-wrap ~ .l-canvas .l-navigation-item {
+	opacity: 0;
+	}
+
+/* Load More button
+   ========================================================================== */
+.g-loadmore {
+	text-align: center;
+	position: relative;
+	}
+.g-loadmore.done {
+	display: none;
+	}
+	.g-loadmore-btn {
+		position: relative;
+		z-index: 1 !important;
+		}
+		.g-loadmore-btn span {
+			position: relative;
+			}
+	.g-loadmore .g-preloader {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		opacity: 0;
+		transition: opacity 0.3s;
+		}
+	.g-loadmore.loading .g-loadmore-btn {
+		opacity: 0;
+		}
+	.g-loadmore.loading .g-preloader {
+		opacity: 1;
+		}
+
+	/* Style Box */
+	.g-loadmore.type_block .g-loadmore-btn {
+		display: block;
+		font-size: 1.2rem;
+		font-weight: bold;
+		padding: 1.3rem;
+		color: inherit !important;
+		}
+	.l-section.height_auto.width_full .g-loadmore.type_block .g-loadmore-btn {
+		padding: 2rem;
+		}
+	.l-section.color_primary .g-loadmore.type_block .g-loadmore-btn,
+	.l-section.color_secondary .g-loadmore.type_block .g-loadmore-btn,
+	.l-section.color_custom .g-loadmore.type_block .g-loadmore-btn {
+		background-color: rgba(255,255,255,0.15);
+		}
+	.no-touch .l-section.color_primary .g-loadmore.type_block .g-loadmore-btn:hover,
+	.no-touch .l-section.color_secondary .g-loadmore.type_block .g-loadmore-btn:hover,
+	.no-touch .l-section.color_custom .g-loadmore.type_block .g-loadmore-btn:hover {
+		background-color: rgba(255,255,255,0.2);
+		}
+
+/* WordPress Listing pagination
+   ========================================================================== */
+.navigation.pagination .nav-links {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -0.2rem;
+	}
+	.pagination .page-numbers {
+		flex-shrink: 0;
+		text-align: center;
+		font-size: 1.2rem;
+		line-height: 3.5rem;
+		height: 3.5rem;
+		width: 3.5rem;
+		margin: 0.2rem;
+		position: relative;
+		overflow: hidden;
+		z-index: 1;
+		border-radius: 50%;
+		color: inherit;
+		}
+	.pagination span.page-numbers {
+		cursor: default;
+		}
+	.pagination a.page-numbers {
+		color: inherit;
+		}
+	.no-touch .pagination .page-numbers:hover {
+		color: #fff;
+		}
+		.no-touch .pagination .page-numbers:before {
+			display: block;
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 0;
+			width: 100%;
+			transition: height 0.3s;
+			}
+		.no-touch .pagination .page-numbers:hover:before {
+			height: 100%;
+			}
+		.pagination .page-numbers span {
+			position: relative;
+			}
+	.pagination .page-numbers.current {
+		box-shadow: none !important;
+		color: #fff !important;
+		}
+	.pagination .page-numbers.dots {
+		box-shadow: none !important;
+		color: inherit !important;
+		}
+		.pagination .page-numbers.dots:before {
+			display: none;
+			}
+	.pagination .page-numbers.prev,
+	.pagination .page-numbers.next {
+		font-size: 0;
+		}
+		.pagination .page-numbers.prev:after {
+			content: '\f104';
+			font-family: fontawesome;
+			font-size: 1.5rem;
+			padding-right: 0.2rem;
+			vertical-align: top;
+			position: relative;
+			}
+		.pagination .page-numbers.next:after {
+			content: '\f105';
+			font-family: fontawesome;
+			font-size: 1.5rem;
+			padding-left: 0.2rem;
+			vertical-align: top;
+			position: relative;
+			}
+
+/* WordPress Post pagination
+   ========================================================================== */
+.post-pagination {
+	font-size: 1.2rem;
+	margin: 0 -0.6rem;
+	}
+	.post-pagination > * {
+		display: inline-block;
+		vertical-align: top;
+		padding: 0 0.6rem;
+		}
+	.post-pagination > span:not(.title) {
+		font-weight: bold;
+		}
+
+/* Links Hover Underline 
+   ========================================================================== */
+.no-touch .links_underline .g-loadmore.type_link a:hover {
+	border-bottom: 1px solid;
+	}
