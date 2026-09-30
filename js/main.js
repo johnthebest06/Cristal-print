@@ -17,6 +17,24 @@
     });
   }
 
+  // Пункт меню ведёт к блоку главной — на телефоне сначала закрываем меню, потом прокручиваем
+  document.querySelectorAll('.nav__link').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (!header || !header.classList.contains('is-open')) return;
+      header.classList.remove('is-open');
+      if (burger) burger.setAttribute('aria-expanded', false);
+      document.body.style.overflow = '';
+      var hash = a.getAttribute('href');
+      var target = hash.charAt(0) === '#' && document.getElementById(hash.slice(1));
+      if (!target) return;
+      e.preventDefault();
+      setTimeout(function () {
+        target.scrollIntoView({ behavior: 'smooth' });
+        history.replaceState(null, '', hash);
+      }, 30);
+    });
+  });
+
   // ---------- Модальные окна
   function openModal(id) {
     var m = document.getElementById(id);

@@ -171,6 +171,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .about-band__text { padding: 56px 52px; }
 .about-band__text .h2 { color: #fff; margin: 14px 0 18px; }
 .about-band__text p { color: rgba(255, 255, 255, .78); }
+.about-band__equip { font-size: 14px; margin: -8px 0 28px; }
+.about-band__equip b { color: #fff; }
 .about-band__media { position: relative; min-height: 360px; }
 .about-band__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 30px 0 34px; }
@@ -192,6 +194,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .b2b__item .icon { width: 34px; height: 34px; color: var(--accent-600); margin-bottom: 18px; }
 .b2b__item h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
 .b2b__item p { margin: 0; color: var(--muted); font-size: 15px; }
+.b2b__item p a { color: var(--navy-800); }
+.b2b--4 { grid-template-columns: repeat(4, 1fr); }
 
 /* ---------- Форма заявки */
 .lead-box { position: relative; overflow: hidden; background: var(--navy-900); color: #fff; border-radius: 24px; padding: 44px 44px 36px; }
@@ -357,6 +361,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .prose li { margin-bottom: 6px; }
 .prose a { color: var(--accent-600); text-decoration: underline; text-underline-offset: 2px; }
 .memo { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+#tehtrebovaniya .memo { grid-template-columns: repeat(3, 1fr); }
 .memo li { padding: 22px; border-radius: 14px; background: #fff; border: 1px solid var(--line); }
 .memo b { display: block; font-size: 16px; margin-bottom: 6px; color: var(--navy-900); }
 .memo span { font-size: 14.5px; color: var(--muted); }
@@ -422,6 +427,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   .hero-b__float { left: 16px; }
   .steps { grid-template-columns: repeat(2, 1fr); }
   .b2b { grid-template-columns: 1fr; }
+  .b2b--4 { grid-template-columns: 1fr 1fr; }
+  #tehtrebovaniya .memo { grid-template-columns: 1fr 1fr; }
   .form-grid, .form-grid--4, .calc-dyn { grid-template-columns: 1fr 1fr; }
   .calc { grid-template-columns: 1fr; }
   .calc__summary { position: static; }
@@ -451,6 +458,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   .adv__num { display: none; }
   .adv__ic { margin: 0; width: 52px; height: 52px; grid-row: span 2; }
   .steps { grid-template-columns: 1fr; }
+  .b2b--4, #tehtrebovaniya .memo { grid-template-columns: 1fr; }
   .stats { grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .stat b { font-size: 30px; }
   .about-band__text { padding: 36px 24px; }
