@@ -16,16 +16,6 @@
       document.body.style.overflow = open ? 'hidden' : '';
     });
   }
-  document.querySelectorAll('.has-mega > .nav__link').forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-      var li = btn.parentElement;
-      // На широком экране меню раскрывается наведением, клик ведёт в каталог
-      if (window.matchMedia('(min-width: 1121px)').matches && btn.tagName === 'A') return;
-      e.preventDefault();
-      li.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', li.classList.contains('is-open'));
-    });
-  });
 
   // ---------- Модальные окна
   function openModal(id) {
