@@ -237,6 +237,18 @@ ul { margin: 0; padding: 0; list-style: none; }
 .send-ways { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .form-done--light p { color: var(--ink-2); }
 
+/* Параметры продукции в форме на главной — подставляются скриптом */
+.calc-dyn { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; padding: 22px; border-radius: 16px; background: rgba(255, 255, 255, .05); border: 1px dashed rgba(255, 255, 255, .18); }
+.calc-dyn .field--wide { grid-column: 1 / -1; }
+.calc-dyn .field--span2 { grid-column: span 2; }
+.calc-dyn__hint { grid-column: 1 / -1; margin: 0; display: flex; align-items: center; gap: 10px; color: rgba(255, 255, 255, .6); font-size: 14.5px; }
+.calc-dyn__hint .icon { color: var(--accent); }
+.calc-dyn.is-filled { border-style: solid; animation: dynIn .25s ease; }
+@keyframes dynIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.lead-box .opt span { background: rgba(255, 255, 255, .06); border-color: rgba(255, 255, 255, .2); color: rgba(255, 255, 255, .85); }
+.lead-box .opt input:checked + span { background: var(--accent); border-color: var(--accent); color: #fff; }
+.qty-own { margin-top: 10px; }
+
 /* Светлая форма (на страницах продукции и в окне) */
 .lead-light .field__label { color: var(--ink-2); }
 .lead-light .input, .lead-light .select, .lead-light .textarea { background: var(--bg-soft); border-color: var(--line); }
@@ -425,7 +437,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   .hero-b__float { left: 16px; }
   .steps { grid-template-columns: repeat(2, 1fr); }
   .b2b { grid-template-columns: 1fr; }
-  .form-grid, .form-grid--4 { grid-template-columns: 1fr 1fr; }
+  .form-grid, .form-grid--4, .calc-dyn { grid-template-columns: 1fr 1fr; }
   .calc { grid-template-columns: 1fr; }
   .calc__summary { position: static; }
   .works, .works--page { grid-template-columns: repeat(3, 1fr); }
@@ -457,7 +469,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   .about-band__text { padding: 36px 24px; }
   .lead-box { padding: 30px 18px 26px; border-radius: 18px; }
   .form-grid, .form-grid--4, .calc__form .form-grid { grid-template-columns: 1fr; }
-  .field--span2 { grid-column: auto; }
+  .field--span2, .calc-dyn .field--span2 { grid-column: auto; }
+  .calc-dyn { grid-template-columns: 1fr; padding: 16px; }
   .header__phone small { display: none; }
   .calc__form { padding: 22px 16px; }
   .form-foot .btn { width: 100%; }

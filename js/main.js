@@ -98,11 +98,58 @@
     update();
   });
 
+  // ---------- Форма на главной: параметры подставляются под выбранную продукцию
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function iconSvg(name) { return '<svg class="icon" aria-hidden="true"><use href="#i-' + name + '"/></svg>'; }
+  function optsHtml(name, values, type) {
+    return '<div class="opts">' + values.map(function (v, i) {
+      return '<label class="opt"><input type="' + type + '" name="' + name + '" value="' + esc(v) + '"' + (type === 'radio' && i === 0 ? ' checked' : '') + '><span>' + esc(v) + '</span></label>';
+    }).join('') + '</div>';
+  }
+  function selectHtml(label, name, icon, values) {
+    return '<label class="field field--span2"><span class="field__label">' + esc(label) + '</span><span class="field__box">' + iconSvg(icon) +
+      '<select class="select" name="' + name + '"><option value="">Выберите</option>' + values.map(function (v) { return '<option>' + esc(v) + '</option>'; }).join('') + '</select></span></label>';
+  }
+  function inputHtml(label, name, icon, placeholder, cls) {
+    return '<label class="field ' + (cls || '') + '"><span class="field__label">' + esc(label) + '</span><span class="field__box">' + iconSvg(icon) +
+      '<input class="input" type="text" name="' + name + '" placeholder="' + esc(placeholder) + '" inputmode="numeric"></span></label>';
+  }
+  document.querySelectorAll('[data-dyn]').forEach(function (box) {
+    var form = box.closest('form');
+    var sel = form.querySelector('[data-product]');
+    var hint = box.innerHTML;
+    function render() {
+      var c = (window.CALC || {})[sel.value];
+      if (!sel.value) { box.innerHTML = hint; box.classList.remove('is-filled'); return; }
+      if (!c) {
+        box.innerHTML = inputHtml('Тираж, шт.', 'qty', 'hash', 'Например, 1000', 'field--span2');
+        box.classList.add('is-filled');
+        return;
+      }
+      var L = c.labels, h = '';
+      h += '<div class="field field--wide"><span class="field__label">' + esc(L.format) + '</span>' + optsHtml('format', c.format, 'radio') + '</div>';
+      h += selectHtml(L.paper, 'paper', 'doc', c.paper) + selectHtml('Печать', 'print', 'layers', c.print);
+      if (c.pages) h += inputHtml('Количество страниц', 'pages', 'book', 'Например, 24', 'field--span2');
+      h += '<div class="field field--wide"><span class="field__label">' + esc(L.qty) + '</span>' + optsHtml('qty', c.qty, 'radio') +
+        '<span class="field__box qty-own" hidden>' + iconSvg('hash') + '<input class="input" type="text" name="qty_own" placeholder="Ваш тираж, шт." inputmode="numeric"></span></div>';
+      h += '<div class="field field--wide"><span class="field__label">' + esc(L.finish) + '</span>' + optsHtml('finish', c.finish, 'checkbox') + '</div>';
+      box.innerHTML = h;
+      box.classList.remove('is-filled'); void box.offsetWidth; box.classList.add('is-filled');
+    }
+    sel.addEventListener('change', render);
+    form.addEventListener('change', function (e) {
+      if (e.target.name !== 'qty') return;
+      var own = form.querySelector('.qty-own');
+      if (own) own.hidden = e.target.value !== 'Другой тираж';
+    });
+    render();
+  });
+
   // ---------- Формы заявки
   function leadText(data) {
     var lines = ['Заявка с сайта Кристалл Принт', ''];
     var map = [
-      ['product', 'Продукция'], ['format', 'Формат/вид'], ['paper', 'Материал'], ['print', 'Печать'],
+      ['product', 'Продукция'], ['format', 'Формат/вид'], ['paper', 'Материал'], ['print', 'Печать'], ['pages', 'Страниц'],
       ['qty', 'Тираж'], ['finish', 'Обработка'], ['name', 'Имя'], ['phone', 'Телефон'],
       ['email', 'E-mail'], ['company', 'Организация'], ['message', 'Комментарий']
     ];
