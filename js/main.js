@@ -254,6 +254,18 @@
   }
   document.querySelectorAll('form.lead-form').forEach(initLeadForm);
 
+  // ---------- Фильтр продукции на главной
+  document.querySelectorAll('.filters').forEach(function (bar) {
+    var cards = bar.parentElement.querySelectorAll('.pcard[data-cat]');
+    bar.addEventListener('click', function (e) {
+      var b = e.target.closest('.filter');
+      if (!b) return;
+      var f = b.getAttribute('data-filter');
+      bar.querySelectorAll('.filter').forEach(function (x) { x.classList.toggle('is-active', x === b); });
+      cards.forEach(function (c) { c.hidden = f !== 'all' && c.getAttribute('data-cat') !== f; });
+    });
+  });
+
   // ---------- Вкладки (штампы пакетов)
   document.querySelectorAll('.tabs').forEach(function (tabs) {
     tabs.addEventListener('click', function (e) {
